@@ -133,3 +133,6 @@ dmypy.json
 .idea/
 .idea/vcs.xml
 .idea/vcs.xml
+
+db.sqlite3
+db.sqlite3-journal
