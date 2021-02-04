@@ -12,12 +12,17 @@
                 {% if p.hoot_text %}
                     <h5 class="text-muted">{{ p.hoot_text }}</h5>
                 {% endif %}
+                <div class="card-footer text-muted">
+                    <p class="lead">
+                        by <a href="#">{{ p.author|upper }}</a>
+                    </p>
+                </div>
                 <p>{{ p.created_at }}</p>
-                <p>{{ p.content | truncatewords:45}}</p>
+                <p>{{ p.content | truncatewords:45 }}</p>
             </div>
 
         {% endfor %}
-        {% else %}
+    {% else %}
         <h3>아직 게시물이 없습니다.</h3>
     {% endif %}
 {% endblock %}
