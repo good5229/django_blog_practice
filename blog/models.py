@@ -35,7 +35,7 @@ class Post(models.Model):
     file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d/', blank=True)
 
     title = models.CharField(max_length=30)
-    hoot_text = models.CharField(max_length=100, blank=True)
+    hook_text = models.CharField(max_length=100, blank=True)
     content = models.TextField()
 
     created_at = models.DateTimeField(auto_now_add=True)
