@@ -13,10 +13,3 @@ def landing(request):
             'recent_posts': recent_post,
         }
     )
-
-
-def about_me(request):
-    return render(
-        request,
-        'single_pages/about_me.html'
-    )
