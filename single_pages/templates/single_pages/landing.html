@@ -1,17 +1,50 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Introduce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'single_pages/css/landing.css' %}" %} media="screen">
+    <script src="https://kit.fontawesome.com/de33348239.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav>
-    <a href="/blog/">blog</a>
-    <a href="/about_me/">About me</a>
-</nav>
-
-<h1>블로그 소개 페이지입니다.</h1>
-<h2>h2h2</h2>
-<h3>Not finished</h3>
+{% include 'blog/navbar.html' %}
+<section>
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-6 text-dark">
+                <h1 class="mt-5">SSAFY 대전 1반</h1>
+                <p>SSAFY 대전 1반을 위한 알고리즘 스터디 아카이브 블로그입니다.</p>
+            </div>
+            <div class="col-lg-5 mt-5">
+                <h2 class="text-dark">Blog - 최근 포스트</h2>
+                {% for post in recent_posts %}
+                    <div class="card mt-1">
+                        <div class="card-body">
+                            <h6><a href="{{ post.get_absolute_url }}"
+                                   class="text-decoration-none text-dark">{{ post.title }}</a></h6>
+                            <span class="badge badge-pill badge-dark float-right">
+                                <img class="mr-1 rounded-circle" width="20px" src="{{ post.get_avatar_url }}"
+                                     alt="{{ post.author }}">
+                                {{ post.author.username }}
+                                &nbsp;
+                                &nbsp;
+                                {{ post.created_at }}
+                           </span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<div class="fixed-bottom">
+    {% include 'blog/footer.html' %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 </body>
 </html>
