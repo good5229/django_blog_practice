@@ -3,7 +3,7 @@ from django.test import TestCase
 
 # Create your tests here.
 from blog.models import Post
-
+from math import gcd
 
 class TestView(TestCase):
     def setup(self):
