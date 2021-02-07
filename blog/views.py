@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from blog.forms import CommentForm
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 
 
 # Create your views here.
@@ -103,6 +103,16 @@ class PostUpdate(UpdateView, LoginRequiredMixin):
 
         return response
 
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(CommentUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
 
 def category_page(request, slug):
     if slug == 'no_category':
@@ -167,4 +177,4 @@ def new_comment(request, pk):
         else:
             return redirect(post.get_absolute_url())
     else:
-        return PermissionDenied
+        raise PermissionDenied
